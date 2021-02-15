@@ -1,18 +1,20 @@
-const mysql = require('mysql')
-const chalk = require('./chalk')
+const
+  mysql = require('mysql'),
+  hl = require('handy-log'),
+  { MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE } = process.env
 
 const db = mysql.createConnection({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-    charset: "utf8mb4"
+  host: MYSQL_HOST,
+  user: MYSQL_USER,
+  password: MYSQL_PASSWORD,
+  database: MYSQL_DATABASE,
+  charset: "utf8mb4"
 })
 
 db.connect(err => {
-    if(err){
-        chalk.e(err)
-    }
+  if(err){
+    hl.error(err)
+  }
 })
 
 module.exports = db

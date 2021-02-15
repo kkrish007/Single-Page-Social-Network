@@ -1,19 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class Hidden_overlay extends React.Component{
-    render(){
-        let { visible } = this.props
-        return(
-            <div class={`${visible ? 'overlay' : 'hidden_overlay' }`} ></div>
-        )
+export default class Overlay extends React.Component{
+  render(){
+    let
+      { type } = this.props,
+      cls
+
+    if(type == 'black'){
+      cls = 'overlay'
+    } else if (type == 'white'){
+      cls = 'hidden_overlay'
+    } else if (type == 'colored'){
+      cls = 'colored_overlay'
     }
+
+    return (
+      <div class={cls} ></div>
+    )
+  }
 }
 
-Hidden_overlay.defaultProps = {
-    visible: true
+Overlay.defaultProps = {
+  type: 'black'
 }
 
-Hidden_overlay.propTypes = {
-    visible: PropTypes.bool
+Overlay.propTypes = {
+  type: PropTypes.string
 }
